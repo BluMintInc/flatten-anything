@@ -32,7 +32,7 @@ export default [
   {
     input: 'dist/index.js',
     output: {
-      file: 'dist-cjs/index.js',
+      file: 'dist-cjs/index.cjs',
       format: 'cjs',
       exports: 'named'
     },
