@@ -9,6 +9,18 @@ npm i flatten-anything
 
 Flatten objects and replace nested props with 'prop.subprop'. A simple and small integration.
 
+## CommonJS Support
+
+This package provides both ESM and CommonJS builds:
+
+```js
+// ESM (default)
+import { flatten } from 'flatten-anything'
+
+// CommonJS
+const { flatten } = require('flatten-anything')
+```
+
 I was looking for:
 
 - A simple solution to flatten objects & arrays

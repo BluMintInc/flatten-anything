@@ -1,11 +1,14 @@
 {
-  "name": "flatten-anything",
-  "version": "4.0.2",
+  "name": "@blumintinc/flatten-anything",
+  "version": "4.0.3",
   "description": "Flatten objects and replace nested props with 'prop.subprop'. A simple and small integration",
   "type": "module",
   "sideEffects": false,
   "exports": {
-    ".": "./dist/index.js"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist-cjs/index.js"
+    }
   },
   "engines": {
     "node": ">=18"
@@ -14,7 +17,8 @@
     "test": "vitest run",
     "lint": "tsc --noEmit && eslint ./src",
     "build": "del-cli dist && tsc",
-    "release": "npm run lint && npm run build && np"
+    "build:cjs": "del-cli dist-cjs && rollup -c",
+    "release": "npm run lint && npm run build && npm run build:cjs && np"
   },
   "dependencies": {
     "filter-anything": "^4.0.2",
@@ -23,13 +27,17 @@
   "devDependencies": {
     "@cycraft/eslint": "^0.4.3",
     "@cycraft/tsconfig": "^0.1.2",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
     "copy-anything": "^4.0.2",
     "del-cli": "^6.0.0",
     "np": "^10.2.0",
+    "rollup": "^4.39.0",
     "vitest": "^3.0.6"
   },
   "files": [
-    "dist"
+    "dist",
+    "dist-cjs"
   ],
   "keywords": [
     "flatten",
@@ -48,8 +56,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mesqueeb/flatten-anything.git"
+    "url": "git+https://github.com/BluMintInc/flatten-anything.git"
   },
-  "homepage": "https://github.com/mesqueeb/flatten-anything#readme",
-  "bugs": "https://github.com/mesqueeb/flatten-anything/issues"
+  "homepage": "https://github.com/BluMintInc/flatten-anything#readme",
+  "bugs": "https://github.com/BluMintInc/flatten-anything/issues",
+  "publishConfig": {
+    "access": "public"
+  }
 }
