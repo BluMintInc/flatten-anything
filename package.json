@@ -1,10 +1,10 @@
 {
   "name": "@blumintinc/flatten-anything",
-  "version": "4.0.6",
+  "version": "4.0.7",
   "description": "Flatten objects and replace nested props with 'prop.subprop'. A simple and small integration",
   "type": "module",
   "sideEffects": false,
-  "main": "./dist-cjs/index.js",
+  "main": "./dist-cjs/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
