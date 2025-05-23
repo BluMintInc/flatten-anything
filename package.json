@@ -2,16 +2,16 @@
   "name": "@blumintinc/flatten-anything",
   "version": "4.0.8",
   "description": "Flatten objects and replace nested props with 'prop.subprop'. A simple and small integration",
-  "type": "commonjs",
+  "type": "module",
   "sideEffects": false,
   "main": "./dist-cjs/index.js",
-  "module": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": {
         "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
+        "default": "./dist/index.mjs"
       },
       "require": {
         "types": "./dist/index.d.ts",
@@ -27,7 +27,8 @@
     "lint": "tsc --noEmit && eslint ./src",
     "build": "del-cli dist && tsc",
     "build:cjs": "del-cli dist-cjs && rollup -c",
-    "release": "npm run lint && npm run build && npm run build:cjs && np"
+    "finalize:mjs": "node -e \"const fs=require('fs'); if(fs.existsSync('dist/index.js')){fs.renameSync('dist/index.js','dist/index.mjs');console.log('Renamed dist/index.js to dist/index.mjs')}else{console.error('Error: dist/index.js not found for renaming.');process.exit(1)}\"",
+    "release": "npm run lint && npm run build && npm run build:cjs && npm run finalize:mjs && np"
   },
   "dependencies": {
     "filter-anything": "^4.0.2",
